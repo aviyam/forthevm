@@ -1,0 +1,7 @@
+{
+  "name": "ForthVM - Interactive Forth Interpreter & Stack Machine",
+  "description": "An interactive Forth interpreter and compiler featuring a custom stack machine, real-time stack visualizer, cross-platform bytecode exporter, and integrated documentation system.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
