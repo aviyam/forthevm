@@ -1,24 +1,27 @@
 # ==========================================
 # Stage 1: Build the React / Vite SPA
+# Use --platform=$BUILDPLATFORM so the Node.js build runs natively on the host
+# architecture (avoiding QEMU emulation and cross-architecture native binding issues)
 # ==========================================
-FROM node:20-alpine AS builder
+FROM --platform=$BUILDPLATFORM node:20-bookworm-slim AS builder
 
 WORKDIR /app
 
-# Copy package descriptors
-COPY package.json package-lock.json* ./
+# Copy package descriptor
+COPY package.json ./
 
-# Install dependencies cleanly
-RUN npm ci || npm install --legacy-peer-deps
+# Install dependencies for the build host
+RUN npm install --legacy-peer-deps
 
-# Copy application source
+# Copy application source code
 COPY . .
 
-# Build production assets
+# Build production static assets
 RUN npm run build
 
 # ==========================================
 # Stage 2: Production Nginx Server
+# Multi-architecture target (linux/amd64, linux/arm64)
 # ==========================================
 FROM nginx:alpine AS runner
 
