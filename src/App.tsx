@@ -143,7 +143,7 @@ export default function App() {
 
     if (stepSpeed === 0) {
       // Instant execution
-      const res = vmRef.current.run(500000);
+      const res = vmRef.current.run(10000000);
       updateSnapshot();
 
       const newOut = vmRef.current.output.join('');
@@ -303,7 +303,7 @@ export default function App() {
     const oldOutLen = vm.output.length;
 
     vm.loadProgram(res.instructions);
-    vm.run(100000);
+    vm.run(10000000);
     updateSnapshot();
 
     const newOutputs = vm.output.slice(oldOutLen).join('');

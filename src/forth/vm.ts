@@ -688,7 +688,7 @@ export class ForthVM {
   /**
    * Run VM continuously up to maxCycles to prevent browser freeze
    */
-  public run(maxCycles: number = 200000): { finished: boolean; cycles: number; executionTimeMs: number } {
+  public run(maxCycles: number = 10000000): { finished: boolean; cycles: number; executionTimeMs: number } {
     const startTime = performance.now();
     let count = 0;
 
